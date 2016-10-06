@@ -17,5 +17,5 @@ export default {
 .quote-description
   padding-top: 50px;
   #quote-description
-    width: 700px;
+    width: 100%;
 </style>

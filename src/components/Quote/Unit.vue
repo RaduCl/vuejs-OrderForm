@@ -40,7 +40,6 @@ export default {
 
 <style lang="sass">
 .quote-unit 
-  max-width: 700px;
   padding-top: 50px;
   /*background-color: #eaeaea;*/
   th

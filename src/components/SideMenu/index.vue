@@ -10,6 +10,6 @@
 <style>
 .side-menu {
   background-color: #f5f5ff;
-  width: 250px;
+  flex:1;
 }  
 </style>

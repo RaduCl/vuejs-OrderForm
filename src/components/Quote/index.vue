@@ -1,14 +1,16 @@
 <template>
   <div class="main-quote">
+    <div class="main-quote-container">
 
-    <quote-header></quote-header>
-    
-    <button type="button" class="btn btn-default">Import quote data</button>
+      <quote-header></quote-header>
+      
+      <button type="button" class="btn btn-default">Import quote data</button>
 
-    <description></description>
+      <description></description>
 
-    <unit></unit>
+      <unit></unit>
 
+    </div>
   </div>
 </template>
 
@@ -31,10 +33,14 @@ export default {
 };
 </script>
 
-<style>
-.main-quote {
+<style lang="sass">
+.main-quote
     background-color: #fdf8f1;
-    flex: 1;
-    padding: 20px;
-}
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+
+    .main-quote-container
+      width: 80%;
 </style>
