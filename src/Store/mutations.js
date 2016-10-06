@@ -49,7 +49,7 @@ export const state = {
 };
 
 export const mutations = {
-  addLineItem(state, { text }) {
+  ADD_LINE_ITEM(state, { text }) {
     state.todos.push({
       text,
       done: false,

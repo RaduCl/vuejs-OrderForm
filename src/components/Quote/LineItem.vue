@@ -6,7 +6,6 @@
         @blur="changeQtyy"
         :value="lineItem.qty"
       >
-      <span>{{ lineItem.qty }}</span>
     </td>
     <td>{{ lineItem.price }}</td>
     <td>x</td>
@@ -35,10 +34,12 @@ export default {
     ]),
     changeQtyy(e) {
       const qty = e.target.value.trim();
-      const { listItem } = this;
+      console.log('qty: ', qty);
+      const lineItem = this.lineItem;
+      console.log('lineItem: ', lineItem);
       if (qty) {
         this.changeQty({
-          listItem,
+          lineItem,
           qty,
         });
       }
