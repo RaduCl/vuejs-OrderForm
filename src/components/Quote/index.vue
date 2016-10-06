@@ -42,5 +42,6 @@ export default {
     overflow-y: scroll;
 
     .main-quote-container
-      width: 80%;
+      width: 70%;
+      padding-top: 50px;
 </style>

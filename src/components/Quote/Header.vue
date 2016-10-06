@@ -17,5 +17,7 @@ export default {
 </script>
 
 <style>
-
+.main-quote-header {
+  margin-bottom: 50px;
+}
 </style>
