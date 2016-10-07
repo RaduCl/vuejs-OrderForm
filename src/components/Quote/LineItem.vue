@@ -3,16 +3,19 @@
     <td>{{ lineItem.name }}</td>
     <td>
       <input type="text" class="form-control" name="quantity" id="" placeholder="0"
-        @blur="changeQtyy"
+        @blur="changeQty"
         :value="lineItem.qty"
       >
     </td>
-    <td>{{ lineItem.price }}</td>
     <td>x</td>
-    <td>{{ totalPrice }}$</td>
+    <td>{{ lineItem.price }}</td>
+    <!--<td>{{ totalPrice }}$</td>-->
+    <td>{{ lineItem.totalPrice }}$</td>
     <td>{{ lineItem.executionTime }}</td>
     <td>
-      <button>
+      <button
+        @click="deleteLineItem"
+      >
         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
       </button>
     </td>
@@ -22,7 +25,7 @@
 <script>
 import { mapMutations } from 'vuex';
 export default {
-  props: ['lineItem'],
+  props: ['lineItem', 'index'],
   computed: {
     totalPrice() {
       return this.lineItem.price * this.lineItem.qty;
@@ -30,19 +33,25 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'changeQty',
+      'EDIT_LINE_ITEM_QTY',
+      'DELETE_LINE_ITEM',
+      'UPDATE_UNIT_TOTAL_VALUES',
     ]),
-    changeQtyy(e) {
+    changeQty(e) {
       const qty = e.target.value.trim();
-      console.log('qty: ', qty);
+      // TODO add number value validation here
       const lineItem = this.lineItem;
-      console.log('lineItem: ', lineItem);
+      // console.log('lineItem: ', lineItem);
       if (qty) {
-        this.changeQty({
+        this.EDIT_LINE_ITEM_QTY({
           lineItem,
           qty,
         });
+        this.UPDATE_UNIT_TOTAL_VALUES();
       }
+    },
+    deleteLineItem() {
+      this.DELETE_LINE_ITEM(this.index);
     },
   },
 };

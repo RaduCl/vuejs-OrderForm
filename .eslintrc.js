@@ -15,8 +15,10 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     // allow var reasignment
-    'no-param-reassign': 1,
-    
-    'no-shadow': 1
+    'no-param-reassign': 0,
+    // allow shadow assignement
+    'no-shadow': 0,
+    // allow all caps method names
+    'new-cap': 0
   }
 }

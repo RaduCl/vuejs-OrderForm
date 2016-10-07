@@ -6,7 +6,7 @@
       
       <button type="button" class="btn btn-default">Import quote data</button>
 
-      <description></description>
+      <description v-bind:description="descriptionText"></description>
 
       <unit></unit>
 
@@ -22,13 +22,17 @@ import Unit from './Unit';
 export default {
   data() {
     return {
-      quoteId: '10342',
     };
   },
   components: {
     QuoteHeader,
     Description,
     Unit,
+  },
+  computed: {
+    descriptionText() {
+      return this.$store.state.quote.description;
+    },
   },
 };
 </script>

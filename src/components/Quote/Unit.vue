@@ -5,8 +5,8 @@
         <tr>
           <th>Line items</th>
           <th>Quantity</th>
-          <th>Price</th>
           <th></th>
+          <th>Price</th>
           <th>Total Price</th>
           <th>Time/Sec</th>
           <th></th>
@@ -14,10 +14,27 @@
       </thead>
       <tbody>
         <!--<line-item></line-item>-->
-        <line-item v-for="lineItem in unit" v-bind:lineItem="lineItem"></line-item>
+        <line-item 
+          v-for="(lineItem, index) in components" 
+          v-bind:lineItem="lineItem"
+          v-bind:index="index"
+        ></line-item>
       </tbody>
     </table>
     <button type="button" class="btn btn-default">+ Add line item</button>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td class="invis">Line items</td>
+          <td class="invis">Quantity</td>
+          <td></td>
+          <td class="invis">Price</td>
+          <td>{{totalPrice}}</td>
+          <td>{{totalExecutionTime}}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -25,14 +42,21 @@
 import LineItem from './LineItem';
 export default {
   data() {
-    return {};
+    return {
+    };
   },
   components: {
     LineItem,
   },
   computed: {
-    unit() {
-      return this.$store.state.unit;
+    components() {
+      return this.$store.state.quote.unit.components;
+    },
+    totalPrice() {
+      return this.$store.state.quote.unit.totalCost;
+    },
+    totalExecutionTime() {
+      return this.$store.state.quote.unit.totalExecutionTime;
     },
   },
 };
@@ -46,5 +70,7 @@ export default {
     text-align: left;
   tr
     padding: 10px;
+  .invis
+    opacity: 0;
 
 </style>

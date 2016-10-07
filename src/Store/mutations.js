@@ -12,6 +12,8 @@ const Unit = [
     price: 12,
     executionTime: 2,
     qty: 0,
+    totalPrice: 0,
+    totalExecutionTime: 0,
   },
   {
     id: 2,
@@ -19,6 +21,8 @@ const Unit = [
     price: 23,
     executionTime: 0.2,
     qty: 0,
+    totalPrice: 0,
+    totalExecutionTime: 0,
   },
   {
     id: 3,
@@ -26,6 +30,8 @@ const Unit = [
     price: 14,
     executionTime: 0.5,
     qty: 0,
+    totalPrice: 0,
+    totalExecutionTime: 0,
   },
   {
     id: 4,
@@ -33,6 +39,8 @@ const Unit = [
     price: 2,
     executionTime: 5,
     qty: 0,
+    totalPrice: 0,
+    totalExecutionTime: 0,
   },
   {
     id: 5,
@@ -40,12 +48,22 @@ const Unit = [
     price: 5,
     executionTime: 30,
     qty: 0,
+    totalPrice: 0,
+    totalExecutionTime: 0,
   },
 ];
 
 export const state = {
   // unit: JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]'),
-  unit: Unit,
+  // unit: Unit,
+  quote: {
+    description: '',
+    unit: {
+      components: Unit,
+      totalCost: 0,
+      totalExecutionTime: 0,
+    },
+  },
 };
 
 export const mutations = {
@@ -56,9 +74,27 @@ export const mutations = {
     });
   },
 
-  changeQty(state, { lineItem, qty }) {
-    console.log('lineItem ', lineItem);
+  EDIT_LINE_ITEM_QTY(state, { lineItem, qty }) {
     lineItem.qty = qty;
+    lineItem.totalPrice = qty * lineItem.price;
+    lineItem.totalExecutionTime = qty * lineItem.executionTime;
+  },
+
+  DELETE_LINE_ITEM(state, lineItem) {
+    state.quote.unit.components.splice(lineItem, 1);
+  },
+
+  UPDATE_QUOTE_DESCRIPTION(state, { text }) {
+    state.quote.description = text;
+  },
+
+  UPDATE_UNIT_TOTAL_VALUES(state) {
+    state.quote.unit.totalCost = state.quote.unit.components
+      .map(x => x.totalPrice)
+      .reduce((acc, x) => acc + x, 0);
+    state.quote.unit.totalExecutionTime = state.quote.unit.components
+      .map(x => x.totalExecutionTime)
+      .reduce((acc, x) => acc + x, 0);
   },
 
   deleteTodo(state, { todo }) {
