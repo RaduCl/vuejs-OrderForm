@@ -70,8 +70,7 @@ export const mutations = {
 
   ADD_LINE_ITEM(state, { lineItem }) {
     state.quote.unit.components.push({
-      text,
-      done: false,
+      lineItem,
     });
   },
 
