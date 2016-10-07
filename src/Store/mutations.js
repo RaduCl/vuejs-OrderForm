@@ -67,8 +67,9 @@ export const state = {
 };
 
 export const mutations = {
-  ADD_LINE_ITEM(state, { text }) {
-    state.todos.push({
+
+  ADD_LINE_ITEM(state, { lineItem }) {
+    state.quote.unit.components.push({
       text,
       done: false,
     });
@@ -97,21 +98,4 @@ export const mutations = {
       .reduce((acc, x) => acc + x, 0);
   },
 
-  deleteTodo(state, { todo }) {
-    state.todos.splice(state.todos.indexOf(todo), 1);
-  },
-
-  editTodo(state, { todo, value }) {
-    todo.text = value;
-  },
-
-  toggleAll(state, { done }) {
-    state.todos.forEach((todo) => {
-      todo.done = done;
-    });
-  },
-
-  clearCompleted(state) {
-    state.todos = state.todos.filter(todo => !todo.done);
-  },
 };
