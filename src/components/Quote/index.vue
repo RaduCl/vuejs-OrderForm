@@ -43,7 +43,7 @@ export default {
     flex: 3;
     display: flex;
     justify-content: center;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     .main-quote-container
       width: 70%;
