@@ -53,10 +53,14 @@ export default {
       return this.$store.state.quote.unit.components;
     },
     totalPrice() {
-      return this.$store.state.quote.unit.totalCost;
+      return this.$store.state.quote.unit.components
+        .map(x => x.totalPrice)
+        .reduce((acc, x) => acc + x, 0);
     },
     totalExecutionTime() {
-      return this.$store.state.quote.unit.totalExecutionTime;
+      return this.$store.state.quote.unit.components
+        .map(x => x.totalExecutionTime)
+        .reduce((acc, x) => acc + x, 0);
     },
   },
 };

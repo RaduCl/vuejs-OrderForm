@@ -35,7 +35,7 @@ export default {
     ...mapMutations([
       'EDIT_LINE_ITEM_QTY',
       'DELETE_LINE_ITEM',
-      'UPDATE_UNIT_TOTAL_VALUES',
+      // 'UPDATE_UNIT_TOTAL_VALUES',
     ]),
     changeQty(e) {
       const qty = e.target.value.trim();
@@ -47,12 +47,12 @@ export default {
           lineItem,
           qty,
         });
-        this.UPDATE_UNIT_TOTAL_VALUES();
+        // this.UPDATE_UNIT_TOTAL_VALUES();
       }
     },
     deleteLineItem() {
       this.DELETE_LINE_ITEM(this.index);
-      this.UPDATE_UNIT_TOTAL_VALUES();
+      // this.UPDATE_UNIT_TOTAL_VALUES();
     },
   },
 };

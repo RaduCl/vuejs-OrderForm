@@ -88,13 +88,13 @@ export const mutations = {
     state.quote.description = text;
   },
 
-  UPDATE_UNIT_TOTAL_VALUES(state) {
-    state.quote.unit.totalCost = state.quote.unit.components
-      .map(x => x.totalPrice)
-      .reduce((acc, x) => acc + x, 0);
-    state.quote.unit.totalExecutionTime = state.quote.unit.components
-      .map(x => x.totalExecutionTime)
-      .reduce((acc, x) => acc + x, 0);
-  },
+  // UPDATE_UNIT_TOTAL_VALUES(state) {
+  //   state.quote.unit.totalCost = state.quote.unit.components
+  //     .map(x => x.totalPrice)
+  //     .reduce((acc, x) => acc + x, 0);
+  //   state.quote.unit.totalExecutionTime = state.quote.unit.components
+  //     .map(x => x.totalExecutionTime)
+  //     .reduce((acc, x) => acc + x, 0);
+  // },
 
 };
