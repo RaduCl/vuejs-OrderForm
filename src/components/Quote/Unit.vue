@@ -21,7 +21,9 @@
         ></line-item>
       </tbody>
     </table>
-    <button type="button" class="btn btn-default">+ Add line item</button>
+    <button type="button" class="btn btn-default"
+      @click="ADD_LINE_ITEM"
+    >+ Add line item</button>
     <table class="table">
       <tbody>
         <tr>
@@ -40,6 +42,8 @@
 
 <script>
 import LineItem from './LineItem';
+import { mapMutations } from 'vuex';
+
 export default {
   data() {
     return {
@@ -61,6 +65,20 @@ export default {
       return this.$store.state.quote.unit.components
         .map(x => x.totalExecutionTime)
         .reduce((acc, x) => acc + x, 0);
+    },
+  },
+  methods: {
+    ...mapMutations([
+      'ADD_LINE_ITEM',
+    ]),
+    addLineItem() {
+      const lineItem = {
+        name: '',
+        price: 0,
+        executionTime: 0,
+        qty: 0,
+      };
+      this.ADD_LINE_ITEM(lineItem);
     },
   },
 };

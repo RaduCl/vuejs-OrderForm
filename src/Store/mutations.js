@@ -68,9 +68,14 @@ export const state = {
 
 export const mutations = {
 
-  ADD_LINE_ITEM(state, { lineItem }) {
+  ADD_LINE_ITEM(state) {
     state.quote.unit.components.push({
-      lineItem,
+      name: '',
+      executionTime: 0,
+      price: 0,
+      qty: 0,
+      totalExecutionTime: 0,
+      totalPrice: 0,
     });
   },
 
