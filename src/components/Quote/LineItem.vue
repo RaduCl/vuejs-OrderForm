@@ -1,57 +1,52 @@
 <template>
-  <tr class="line-item">
+  <div class="line-item">
 
-    <td>
-      <input
-        name="lineItemName"
-        type="text" class="form-control"
-        placeholder="Enter item name here..."
-        :value="lineItem.name"
-        @blur="updateName"
-      >
-    </td>
+  <input
+    name="lineItemName"
+    type="text"
+    class="form-control flex3"
+    placeholder="Enter item name here..."
+    :value="lineItem.name"
+    @blur="updateName"
+  >
 
-    <td>
-      <input
-        name="lineItemQuantity"
-        type="text" class="form-control" id=""
-        placeholder="0"
-        @blur="updateQty"
-        :value="lineItem.qty"
-      >
-    </td>
+  <input
+    name="lineItemQuantity"
+    type="text"
+    class="form-control flex2" id=""
+    placeholder="0"
+    @blur="updateQty"
+    :value="lineItem.qty"
+  >
 
-    <td>
-      <input
-        name="lineItemPrice"
-        type="text" class="form-control" id=""
-        placeholder="0"
-        @blur="updatePrice"
-        :value="lineItem.price"
-      >
-    </td>
+  <input
+    name="lineItemPrice"
+    type="text"
+    class="form-control flex2" id=""
+    placeholder="0"
+    @blur="updatePrice"
+    :value="lineItem.price"
+  >
 
-    <td>{{ totalPrice }}$</td>
+  <div class="flex2">{{ totalPrice }}$</div>
 
-    <td>
-      <input
-        name="lineItemExecutionTime"
-        type="text" class="form-control" id=""
-        placeholder="0"
-        @blur="updateExecutionTime"
-        :value="lineItem.executionTime"
-      >
-    </td>
+  <input
+    name="lineItemExecutionTime"
+    type="text"
+    class="form-control flex2" id=""
+    placeholder="0"
+    @blur="updateExecutionTime"
+    :value="lineItem.executionTime"
+  >
 
-    <td>
-      <button
-        @click="deleteLineItem"
-      >
-        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-      </button>
-    </td>
+  <button
+    class="flex1"
+    @click="deleteLineItem"
+  >
+    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+  </button>
 
-  </tr>
+  </div>
 </template>
 
 <script>
@@ -119,11 +114,13 @@ export default {
 
 <style lang="sass">
 .line-item
-  /*input
-    max-width: 50px;
-    display: initial;*/
+  display: flex;
+  align-items: center;
+
+  > *
+    margin: 10px;
+
   button
     color: red;
-  td
-    vertical-align: middle !important;
+
 </style>

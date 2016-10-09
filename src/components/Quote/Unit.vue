@@ -1,35 +1,6 @@
 <template>
   <div class="quote-unit">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Line items</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Total Price</th>
-          <th>Time/Sec</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <!--<line-item></line-item>-->
-        <line-item 
-          v-for="(lineItem, index) in components" 
-          v-bind:lineItem="lineItem"
-          v-bind:index="index"
-        ></line-item>
-      </tbody>
-    </table>
-    <button type="button" class="btn btn-default"
-      @click="ADD_LINE_ITEM"
-    >+ Add line item</button>
-    <div class="unit-summary">
-      <div class="flex3"></div>
-      <div class="flex2"></div>
-      <div class="flex2">{{totalPrice}}</div>
-      <div class="flex2">{{totalExecutionTime}}</div>
-      <div class="flex1"></div>
-    </div>
+
     <div class="unit-header">
       <div class="flex3">Line items</div>
       <div class="flex2">Quantity</div>
@@ -38,6 +9,30 @@
       <div class="flex2">Time/Sec</div>
       <div class="flex1"></div>
     </div>
+
+    <div class="unit-body">
+      <line-item 
+        v-for="(lineItem, index) in components" 
+        v-bind:lineItem="lineItem"
+        v-bind:index="index"
+      ></line-item>
+    </div>
+
+    <div class="unit-controls">
+      <button type="button" class="btn btn-default"
+        @click="ADD_LINE_ITEM"
+      >+ Add line item</button>
+    </div>
+
+    <div class="unit-summary">
+      <div class="flex3"></div>
+      <div class="flex2"></div>
+      <div class="flex2"></div>
+      <div class="flex2">{{totalPrice}}</div>
+      <div class="flex2">{{totalExecutionTime}}</div>
+      <div class="flex1"></div>
+    </div
+>
   </div>
 </template>
 
@@ -89,26 +84,38 @@ export default {
 .quote-unit 
   padding-top: 50px;
   /*background-color: #eaeaea;*/
-  th
-    text-align: left;
-  tr
-    padding: 10px;
-  .invis
-    opacity: 0;
+
   .unit-summary
     display: flex;
     border-top: 1px solid lightgray;
-    padding-bottom: 5px;
     font-weight: bold;
+
+    > *
+      margin: 10px;
+
   .unit-header
     display: flex;
     border-bottom: 1px solid lightgray;
     padding-bottom: 5px;
     font-weight: bold;
+
+    > *
+      margin: 5px 10px;
+
+  .unit-body
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+
+  .unit-controls
+    margin: 20px 10px;
+
   .flex3
     flex: 3;
+
   .flex2
     flex: 2;
+
   .flex1
     flex: 1;
 
