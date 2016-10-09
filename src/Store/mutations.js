@@ -81,8 +81,20 @@ export const mutations = {
 
   EDIT_LINE_ITEM_QTY(state, { lineItem, qty }) {
     lineItem.qty = qty;
-    lineItem.totalPrice = qty * lineItem.price;
-    lineItem.totalExecutionTime = qty * lineItem.executionTime;
+    // lineItem.totalPrice = qty * lineItem.price;
+    // lineItem.totalExecutionTime = qty * lineItem.executionTime;
+  },
+
+  EDIT_LINE_ITEM_NAME(state, { lineItem, name }) {
+    lineItem.name = name;
+  },
+
+  EDIT_LINE_ITEM_PRICE(state, { lineItem, price }) {
+    lineItem.price = price;
+  },
+
+  EDIT_LINE_ITEM_EXECUTION_TIME(state, { lineItem, time }) {
+    lineItem.executionTime = time;
   },
 
   DELETE_LINE_ITEM(state, lineItem) {
