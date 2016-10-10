@@ -29,7 +29,7 @@
       <div class="flex2"></div>
       <div class="flex2"></div>
       <div class="flex2"></div>
-      <div class="flex2">{{totalUnitPrice}}</div>
+      <div class="flex2">{{totalAssemblyItemsPrice}}</div>
       <div class="flex1"></div>
     </div>
 
@@ -42,10 +42,9 @@ import Assembly from './AssemblyItem';
 export default {
   props: ['assemblyItems'],
   computed: {
-    totalUnitPrice() {
-      return 0;
-      // return this.$store.state.quote.unit.consumableItems
-      //   .reduce((acc, x) => acc + x.price * x.qty * x.margin, 0);
+    totalAssemblyItemsPrice() {
+      return this.$store.state.quote.unit.assemblyItems
+        .reduce((acc, x) => acc + parseFloat(x.totalPrice), 0);
     },
   },
   components: {

@@ -11,7 +11,7 @@ const ConsumableItems = [
     name: 'Consumable item #1',
     price: 12,
     qty: 0,
-    margin: 0.5,
+    margin: 1.5,
     totalPrice: 0,
   },
   {
@@ -19,7 +19,7 @@ const ConsumableItems = [
     name: 'Consumable item #2',
     price: 23,
     qty: 0,
-    margin: 0.5,
+    margin: 1.5,
     totalPrice: 0,
   },
   {
@@ -27,7 +27,7 @@ const ConsumableItems = [
     name: 'Consumable item #3',
     price: 14,
     qty: 0,
-    margin: 0.5,
+    margin: 1.5,
     totalPrice: 0,
   },
   {
@@ -35,7 +35,7 @@ const ConsumableItems = [
     name: 'Consumable item #4',
     price: 2,
     qty: 0,
-    margin: 0.5,
+    margin: 1.5,
     totalPrice: 0,
   },
   {
@@ -43,7 +43,7 @@ const ConsumableItems = [
     name: 'Consumable item #5',
     price: 5,
     qty: 0,
-    margin: 0.5,
+    margin: 1.5,
     totalPrice: 0,
   },
 ];
@@ -54,7 +54,7 @@ const AssemblyItems = [
     name: 'Assembly item #1',
     time: 12,
     qty: 0,
-    margin: 0.5,
+    margin: 1.5,
     totalPrice: 0,
   },
   {
@@ -62,7 +62,7 @@ const AssemblyItems = [
     name: 'Assembly item #2',
     time: 23,
     qty: 0,
-    margin: 0.5,
+    margin: 1.5,
     totalPrice: 0,
   },
   {
@@ -70,7 +70,7 @@ const AssemblyItems = [
     name: 'Assembly item #3',
     time: 14,
     qty: 0,
-    margin: 0.5,
+    margin: 1.5,
     totalPrice: 0,
   },
 ];
@@ -107,8 +107,6 @@ export const mutations = {
 
   EDIT_LINE_ITEM_QTY(state, { lineItem, qty }) {
     lineItem.qty = qty;
-    // lineItem.totalPrice = qty * lineItem.price;
-    // lineItem.totalExecutionTime = qty * lineItem.executionTime;
   },
 
   EDIT_LINE_ITEM_NAME(state, { lineItem, name }) {
@@ -124,7 +122,7 @@ export const mutations = {
   },
 
   EDIT_LINE_ITEM_EXECUTION_TIME(state, { lineItem, time }) {
-    lineItem.executionTime = time;
+    lineItem.time = time;
   },
 
   DELETE_LINE_ITEM(state, lineItemType, index) {
@@ -142,13 +140,15 @@ export const mutations = {
   UPDATE_QUOTE_INTERNAL_NOTES(state, { text }) {
     state.quote.internalNotes = text;
   },
-  // UPDATE_UNIT_TOTAL_VALUES(state) {
-  //   state.quote.unit.totalCost = state.quote.unit.components
-  //     .map(x => x.totalPrice)
-  //     .reduce((acc, x) => acc + x, 0);
-  //   state.quote.unit.totalExecutionTime = state.quote.unit.components
-  //     .map(x => x.totalExecutionTime)
-  //     .reduce((acc, x) => acc + x, 0);
-  // },
 
+  UPDATE_CONSUMABLE_ITEM_TOTAL(state, lineItem) {
+    lineItem.totalPrice = lineItem.price * lineItem.qty * lineItem.margin;
+  },
+
+  UPDATE_ASSEMBLY_ITEM_TOTAL(state, lineItem) {
+    const timeRelatedCost =
+      lineItem.time *
+      (state.quote.config.workerHourlyCost / 3600).toFixed(2);
+    lineItem.totalPrice = (timeRelatedCost * lineItem.qty * lineItem.margin).toFixed(2);
+  },
 };

@@ -25,7 +25,7 @@
       type="text"
       class="form-control flex2" id=""
       placeholder="0"
-      @blur="updatePrice"
+      @blur="updateTime"
       :value="assembly.time"
     >
 
@@ -53,20 +53,22 @@
 <script>
 import { mapMutations } from 'vuex';
 export default {
-  props: ['assembly'],
+  props: ['assembly', 'config'],
   computed: {
     totalAssemblyItemPrice() {
-      return 0;
-      // return this.assembly.price * this.assembly.qty * this.assembly.margin;
+      const timeRelatedCost =
+        this.assembly.time *
+        (this.$store.state.quote.config.workerHourlyCost / 3600).toFixed(2);
+      return (timeRelatedCost * this.assembly.qty * this.assembly.margin).toFixed(2);
     },
   },
   methods: {
     ...mapMutations([
-      'EDIT_LINE_ITEM_QTY',
-      'DELETE_LINE_ITEM',
       'EDIT_LINE_ITEM_NAME',
+      'EDIT_LINE_ITEM_QTY',
+      'EDIT_LINE_ITEM_EXECUTION_TIME',
       'EDIT_LINE_ITEM_MARGIN',
-      // 'UPDATE_UNIT_TOTAL_VALUES',
+      'UPDATE_ASSEMBLY_ITEM_TOTAL',
     ]),
     updateQty(e) {
       const qty = e.target.value.trim();
@@ -78,7 +80,7 @@ export default {
           lineItem,
           qty,
         });
-        // this.UPDATE_UNIT_TOTAL_VALUES();
+        this.UPDATE_ASSEMBLY_ITEM_TOTAL(lineItem);
       }
     },
     updateName(e) {
@@ -89,13 +91,14 @@ export default {
         name,
       });
     },
-    updatePrice(e) {
-      const price = e.target.value.trim();
+    updateTime(e) {
+      const time = e.target.value.trim();
       const lineItem = this.assembly;
-      this.EDIT_LINE_ITEM_PRICE({
+      this.EDIT_LINE_ITEM_EXECUTION_TIME({
         lineItem,
-        price,
+        time,
       });
+      this.UPDATE_ASSEMBLY_ITEM_TOTAL(lineItem);
     },
     updateMargin(e) {
       const margin = e.target.value.trim();
@@ -104,6 +107,7 @@ export default {
         lineItem,
         margin,
       });
+      this.UPDATE_ASSEMBLY_ITEM_TOTAL(lineItem);
     },
     deleteLineItem() {
       this.DELETE_LINE_ITEM('assemblyItems', this.index);

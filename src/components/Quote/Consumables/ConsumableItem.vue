@@ -61,11 +61,12 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'EDIT_LINE_ITEM_QTY',
       'DELETE_LINE_ITEM',
+      'EDIT_LINE_ITEM_QTY',
+      'EDIT_LINE_ITEM_PRICE',
       'EDIT_LINE_ITEM_NAME',
       'EDIT_LINE_ITEM_MARGIN',
-      // 'UPDATE_UNIT_TOTAL_VALUES',
+      'UPDATE_CONSUMABLE_ITEM_TOTAL',
     ]),
     updateQty(e) {
       const qty = e.target.value.trim();
@@ -77,7 +78,7 @@ export default {
           lineItem,
           qty,
         });
-        // this.UPDATE_UNIT_TOTAL_VALUES();
+        this.UPDATE_CONSUMABLE_ITEM_TOTAL(lineItem);
       }
     },
     updateName(e) {
@@ -95,6 +96,7 @@ export default {
         lineItem,
         price,
       });
+      this.UPDATE_CONSUMABLE_ITEM_TOTAL(lineItem);
     },
     updateMargin(e) {
       const margin = e.target.value.trim();
@@ -103,6 +105,7 @@ export default {
         lineItem,
         margin,
       });
+      this.UPDATE_CONSUMABLE_ITEM_TOTAL(lineItem);
     },
     deleteLineItem() {
       this.DELETE_LINE_ITEM('consumableItems', this.index);
