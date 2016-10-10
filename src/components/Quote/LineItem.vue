@@ -105,7 +105,7 @@ export default {
       });
     },
     deleteLineItem() {
-      this.DELETE_LINE_ITEM(this.index);
+      this.DELETE_LINE_ITEM('components', this.index);
       // this.UPDATE_UNIT_TOTAL_VALUES();
     },
   },

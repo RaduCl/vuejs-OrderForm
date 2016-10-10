@@ -1,44 +1,14 @@
 <template>
   <div class="quote-unit">
-
-    <div class="unit-header">
-      <div class="flex3">Line items</div>
-      <div class="flex2">Quantity</div>
-      <div class="flex2">Price</div>
-      <div class="flex2">Total Price</div>
-      <div class="flex2">Time/Sec</div>
-      <div class="flex1"></div>
-    </div>
-
-    <div class="unit-body">
-      <line-item 
-        v-for="(lineItem, index) in components" 
-        v-bind:lineItem="lineItem"
-        v-bind:index="index"
-      ></line-item>
-    </div>
-
-    <div class="unit-controls">
-      <button type="button" class="btn btn-default"
-        @click="ADD_LINE_ITEM"
-      >+ Add line item</button>
-    </div>
-
-    <div class="unit-summary">
-      <div class="flex3"></div>
-      <div class="flex2"></div>
-      <div class="flex2"></div>
-      <div class="flex2">{{totalUnitPrice}}</div>
-      <div class="flex2">{{totalUnitExecutionTime}}</div>
-      <div class="flex1"></div>
-    </div
->
+    <consumables :consumableItems="consumableItems"></consumables>
+    <assemblies :assemblyItems="assemblyItems"></assemblies>
   </div>
 </template>
 
 <script>
-import LineItem from './LineItem';
-import { mapMutations } from 'vuex';
+import Assemblies from './Assemblies/Assemblies';
+import Consumables from './Consumables/Consumables';
+// import { mapMutations } from 'vuex';
 
 export default {
   data() {
@@ -46,7 +16,8 @@ export default {
     };
   },
   components: {
-    LineItem,
+    Consumables,
+    Assemblies,
   },
   computed: {
     components() {
@@ -60,21 +31,29 @@ export default {
       return this.$store.state.quote.unit.components
         .reduce((acc, x) => acc + x.executionTime * x.qty, 0);
     },
-  },
-  methods: {
-    ...mapMutations([
-      'ADD_LINE_ITEM',
-    ]),
-    addLineItem() {
-      const lineItem = {
-        name: '',
-        price: 0,
-        executionTime: 0,
-        qty: 0,
-      };
-      this.ADD_LINE_ITEM(lineItem);
+    consumableItems() {
+      console.log('consumableItems ', this.$store.state.quote.unit.consumableItems);
+      return this.$store.state.quote.unit.consumableItems;
+    },
+    assemblyItems() {
+      console.log('assemblyItems ', this.$store.state.quote.unit.assemblyItems);
+      return this.$store.state.quote.unit.assemblyItems;
     },
   },
+  // methods: {
+  //   ...mapMutations([
+  //     'ADD_LINE_ITEM',
+  //   ]),
+  //   addLineItem() {
+  //     const lineItem = {
+  //       name: '',
+  //       price: 0,
+  //       executionTime: 0,
+  //       qty: 0,
+  //     };
+  //     this.ADD_LINE_ITEM('components', lineItem);
+  //   },
+  // },
 };
 </script>
 
@@ -100,21 +79,21 @@ export default {
     > *
       margin: 5px 10px;
 
-  .unit-body
+  .unit-body, .consumables-block
     display: flex;
     flex-direction: column;
     margin: 10px 0;
 
   .unit-controls
     margin: 20px 10px;
+.line-item
+  display: flex;
+  align-items: center;
 
-  .flex3
-    flex: 3;
+  > *
+    margin: 10px;
 
-  .flex2
-    flex: 2;
-
-  .flex1
-    flex: 1;
+  button
+    color: red;
 
 </style>

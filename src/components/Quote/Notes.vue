@@ -14,7 +14,7 @@
 import { mapMutations } from 'vuex';
 
 export default {
-  props: ['description'],
+  props: ['notes'],
   methods: {
     ...mapMutations([
       'UPDATE_QUOTE_NOTES',

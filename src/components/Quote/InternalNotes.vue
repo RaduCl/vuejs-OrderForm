@@ -1,4 +1,3 @@
-InternalNotes
 <template>
   <div class="quote-description">
     <p>Internal Notes</p>
@@ -15,7 +14,7 @@ InternalNotes
 import { mapMutations } from 'vuex';
 
 export default {
-  props: ['description'],
+  props: ['internalNotes'],
   methods: {
     ...mapMutations([
       'UPDATE_QUOTE_INTERNAL_NOTES',
