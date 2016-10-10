@@ -1,10 +1,11 @@
+InternalNotes
 <template>
   <div class="quote-description">
-    <p>Description</p>
-    <textarea type="text" id="quote-description" rows="6" 
-      placeholder="Enter quote description here..."
-      @blur="updateDescription"
-      :value="description"
+    <p>Internal Notes</p>
+    <textarea type="text" id="quote-internal-notes" rows="6" 
+      placeholder="Enter internal notes here..."
+      @blur="updateInternalNotes"
+      :value="internalNotes"
     >
     </textarea>
   </div>
@@ -17,13 +18,13 @@ export default {
   props: ['description'],
   methods: {
     ...mapMutations([
-      'UPDATE_QUOTE_DESCRIPTION',
+      'UPDATE_QUOTE_INTERNAL_NOTES',
     ]),
-    updateDescription(e) {
+    updateInternalNotes(e) {
       const text = e.target.value;
       // const description = this;
       // TODO add text validation here if required
-      this.UPDATE_QUOTE_DESCRIPTION({
+      this.UPDATE_QUOTE_INTERNAL_NOTES({
         text,
       });
     },
@@ -32,6 +33,6 @@ export default {
 </script>
 
 <style lang="sass">
-.quote-description
+.quote-internal-notes
   padding-top: 50px;
 </style>

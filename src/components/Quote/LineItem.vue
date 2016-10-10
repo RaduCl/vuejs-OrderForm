@@ -28,7 +28,7 @@
     :value="lineItem.price"
   >
 
-  <div class="flex2">{{ totalPrice }}$</div>
+  <div class="flex2">{{ totalLineItemPrice }}$</div>
 
   <input
     name="lineItemExecutionTime"
@@ -54,7 +54,7 @@ import { mapMutations } from 'vuex';
 export default {
   props: ['lineItem', 'index'],
   computed: {
-    totalPrice() {
+    totalLineItemPrice() {
       return this.lineItem.price * this.lineItem.qty;
     },
   },

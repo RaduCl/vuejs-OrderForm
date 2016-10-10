@@ -28,8 +28,8 @@
       <div class="flex3"></div>
       <div class="flex2"></div>
       <div class="flex2"></div>
-      <div class="flex2">{{totalPrice}}</div>
-      <div class="flex2">{{totalExecutionTime}}</div>
+      <div class="flex2">{{totalUnitPrice}}</div>
+      <div class="flex2">{{totalUnitExecutionTime}}</div>
       <div class="flex1"></div>
     </div
 >
@@ -52,15 +52,13 @@ export default {
     components() {
       return this.$store.state.quote.unit.components;
     },
-    totalPrice() {
+    totalUnitPrice() {
       return this.$store.state.quote.unit.components
-        .map(x => x.totalPrice)
-        .reduce((acc, x) => acc + x, 0);
+        .reduce((acc, x) => acc + x.price * x.qty, 0);
     },
-    totalExecutionTime() {
+    totalUnitExecutionTime() {
       return this.$store.state.quote.unit.components
-        .map(x => x.totalExecutionTime)
-        .reduce((acc, x) => acc + x, 0);
+        .reduce((acc, x) => acc + x.executionTime * x.qty, 0);
     },
   },
   methods: {

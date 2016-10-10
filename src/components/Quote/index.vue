@@ -10,6 +10,10 @@
 
       <unit></unit>
 
+      <notes></notes>
+
+      <internal-notes></internal-notes>
+      
     </div>
   </div>
 </template>
@@ -17,7 +21,9 @@
 <script>
 import QuoteHeader from './Header';
 import Description from './Description';
+import Notes from './Notes';
 import Unit from './Unit';
+import InternalNotes from './InternalNotes';
 
 export default {
   data() {
@@ -28,6 +34,8 @@ export default {
     QuoteHeader,
     Description,
     Unit,
+    Notes,
+    InternalNotes,
   },
   computed: {
     descriptionText() {
@@ -39,13 +47,16 @@ export default {
 
 <style lang="sass">
 .main-quote
-    background-color: #fdf8f1;
-    flex: 3;
-    display: flex;
-    justify-content: center;
-    overflow-y: auto;
+  background-color: #fdf8f1;
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
 
-    .main-quote-container
-      width: 70%;
-      padding-top: 50px;
+  .main-quote-container
+    width: 70%;
+    padding-top: 50px;
+  
+  textarea
+    width: 100%;
 </style>

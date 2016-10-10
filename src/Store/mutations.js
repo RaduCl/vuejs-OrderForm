@@ -63,6 +63,8 @@ export const state = {
       totalCost: 0,
       totalExecutionTime: 0,
     },
+    notes: '',
+    internalNotes: '',
   },
 };
 
@@ -105,6 +107,13 @@ export const mutations = {
     state.quote.description = text;
   },
 
+  UPDATE_QUOTE_NOTES(state, { text }) {
+    state.quote.notes = text;
+  },
+
+  UPDATE_QUOTE_INTERNAL_NOTES(state, { text }) {
+    state.quote.internalNotes = text;
+  },
   // UPDATE_UNIT_TOTAL_VALUES(state) {
   //   state.quote.unit.totalCost = state.quote.unit.components
   //     .map(x => x.totalPrice)

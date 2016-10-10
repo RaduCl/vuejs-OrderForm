@@ -1,10 +1,10 @@
 <template>
   <div class="quote-description">
-    <p>Description</p>
-    <textarea type="text" id="quote-description" rows="6" 
-      placeholder="Enter quote description here..."
-      @blur="updateDescription"
-      :value="description"
+    <p>Notes</p>
+    <textarea type="text" id="quote-notes" rows="6" 
+      placeholder="Enter quote related notes here..."
+      @blur="updateNotes"
+      :value="notes"
     >
     </textarea>
   </div>
@@ -17,13 +17,13 @@ export default {
   props: ['description'],
   methods: {
     ...mapMutations([
-      'UPDATE_QUOTE_DESCRIPTION',
+      'UPDATE_QUOTE_NOTES',
     ]),
-    updateDescription(e) {
+    updateNotes(e) {
       const text = e.target.value;
       // const description = this;
       // TODO add text validation here if required
-      this.UPDATE_QUOTE_DESCRIPTION({
+      this.UPDATE_QUOTE_NOTES({
         text,
       });
     },
