@@ -13,27 +13,39 @@
       <input
         class="form-control flex1"
         type="text" 
-        :value="settings.overTimeFactor"/>
+        :value="settings.overTimeFactor"
+        @blur="updateOverTimeFactor"
+      />
       <input
         class="form-control flex1"
         type="text" 
-        :value="settings.discountFactor"/>
+        :value="settings.discountFactor"
+        @blur="updateDiscountFactor"
+      />
       <input
         class="form-control flex1"
         type="text" 
-        :value="settings.overFiveCost"/>
+        :value="settings.overFiveCost"
+        @blur="updateOverFiveCost"
+      />
       <input
         class="form-control flex1"
         type="text" 
-        :value="settings.underFiveCost"/>
+        :value="settings.underFiveCost"
+        @blur="updateUnderFiveCost"
+      />
       <input
         class="form-control flex1"
         type="text" 
-        :value="settings.workerHourlyCost"/>
+        :value="settings.workerRates"
+        @blur="updateWorkerRates"
+      />
       <input
         class="form-control flex1"
         type="text" 
-        :value="settings.defaultMarginMultiplier"/>
+        :value="settings.defaultMarginMultiplier"
+        @blur="updateDefaultMarginMultiplier"
+      />
     </div>
   </div>
 </template>
@@ -45,16 +57,62 @@ export default {
   props: ['settings'],
   methods: {
     ...mapMutations([
-      'UPDATE_QUOTE_INTERNAL_NOTES',
+      'EDIT_CONFIG_OVERTIME',
+      'EDIT_CONFIG_DISCOUNT',
+      'EDIT_CONFIG_OVER_FIVE_COST',
+      'EDIT_CONFIG_UNDER_FIVE_COST',
+      'EDIT_CONFIG_WORKER_RATES',
+      'EDIT_CONFIG_MARGIN',
     ]),
-    // updateInternalNotes(e) {
-    //   const text = e.target.value;
-    //   // const description = this;
-    //   // TODO add text validation here if required
-    //   this.UPDATE_QUOTE_INTERNAL_NOTES({
-    //     text,
-    //   });
-    // },
+
+    updateOverTimeFactor(e) {
+      const value = parseFloat(e.target.value);
+      if (!value) return;
+      this.EDIT_CONFIG_OVERTIME({
+        value,
+      });
+    },
+
+    updateDiscountFactor(e) {
+      const value = parseFloat(e.target.value);
+      if (!value) return;
+      this.EDIT_CONFIG_DISCOUNT({
+        value,
+      });
+    },
+
+    updateOverFiveCost(e) {
+      const value = parseFloat(e.target.value);
+      if (!value) return;
+      this.EDIT_CONFIG_OVER_FIVE_COST({
+        value,
+      });
+    },
+
+    updateUnderFiveCost(e) {
+      const value = parseFloat(e.target.value);
+      if (!value) return;
+      this.EDIT_CONFIG_UNDER_FIVE_COST({
+        value,
+      });
+    },
+
+    updateWorkerRates(e) {
+      const value = parseFloat(e.target.value);
+      if (!value) return;
+      this.EDIT_CONFIG_WORKER_RATES({
+        value,
+      });
+    },
+
+    updateDefaultMarginMultiplier(e) {
+      const value = parseFloat(e.target.value);
+      if (!value) return;
+      this.EDIT_CONFIG_MARGIN({
+        value,
+      });
+    },
+
   },
 };
 </script>

@@ -21,7 +21,7 @@
     <div class="unit-controls">
       <button type="button" class="btn btn-default"
         @click="addLineItem"
-      >+ Add line item</button>
+      >+ Add assembly item</button>
     </div>
 
     <div class="unit-summary">
@@ -44,7 +44,7 @@ export default {
   computed: {
     totalAssemblyItemsPrice() {
       return this.$store.state.quote.unit.assemblyItems
-        .reduce((acc, x) => acc + parseFloat(x.totalPrice), 0);
+        .reduce((acc, x) => acc + parseFloat(x.totalPrice), 0).toFixed(2);
     },
   },
   components: {
@@ -60,6 +60,7 @@ export default {
         price: 0,
         qty: 0,
         margin: 0,
+        time: 0,
       };
       this.ADD_LINE_ITEM({
         lineItemType: 'assemblyItems',

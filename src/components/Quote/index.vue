@@ -12,9 +12,13 @@
 
       <unit></unit>
 
+      <quantities></quantities>
+
       <notes  v-bind:notes="notesText"></notes>
 
       <internal-notes  v-bind:internalNotes="internalNotesText"></internal-notes>
+
+      <calculations></calculations>
 
     </div>
   </div>
@@ -27,6 +31,8 @@ import Notes from './Notes';
 import Unit from './Unit';
 import InternalNotes from './InternalNotes';
 import Settings from './Settings';
+import Quantities from './Quantities/Quantities';
+import Calculations from './Calculations';
 
 export default {
   data() {
@@ -37,9 +43,11 @@ export default {
     QuoteHeader,
     Description,
     Unit,
+    Quantities,
     Notes,
     InternalNotes,
     Settings,
+    Calculations,
   },
   computed: {
     descriptionText() {
@@ -82,4 +90,7 @@ export default {
 
 .flex1
   flex: 1;
+
+.quote-description
+  padding: 30px 0;
 </style>

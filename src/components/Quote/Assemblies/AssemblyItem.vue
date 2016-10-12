@@ -38,7 +38,7 @@
       :value="assembly.margin"
     >
 
-    <div class="flex2">{{ totalAssemblyItemPrice }}$</div>
+    <div class="flex2">$ {{ totalAssemblyItemPrice }}</div>
 
     <button
       class="flex1"
@@ -53,7 +53,7 @@
 <script>
 import { mapMutations } from 'vuex';
 export default {
-  props: ['assembly', 'config'],
+  props: ['assembly', 'index', 'config'],
   computed: {
     totalAssemblyItemPrice() {
       const timeRelatedCost =
@@ -69,6 +69,7 @@ export default {
       'EDIT_LINE_ITEM_EXECUTION_TIME',
       'EDIT_LINE_ITEM_MARGIN',
       'UPDATE_ASSEMBLY_ITEM_TOTAL',
+      'DELETE_LINE_ITEM',
     ]),
     updateQty(e) {
       const qty = e.target.value.trim();
@@ -110,7 +111,11 @@ export default {
       this.UPDATE_ASSEMBLY_ITEM_TOTAL(lineItem);
     },
     deleteLineItem() {
-      this.DELETE_LINE_ITEM('assemblyItems', this.index);
+      const index = this.index;
+      this.DELETE_LINE_ITEM({
+        lineItemType: 'assemblyItems',
+        index,
+      });
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="quote-description">
-    <p>Description</p>
+    <label>Description</label><br>
     <textarea type="text" id="quote-description" rows="6" 
       placeholder="Enter quote description here..."
       @blur="updateDescription"
@@ -32,6 +32,4 @@ export default {
 </script>
 
 <style lang="sass">
-.quote-description
-  padding-top: 50px;
 </style>

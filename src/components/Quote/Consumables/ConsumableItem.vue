@@ -38,7 +38,7 @@
       :value="consumable.margin"
     >
 
-    <div class="flex2">{{ totalConsumableItemPrice }}$</div>
+    <div class="flex2">$ {{ totalConsumableItemPrice }}</div>
 
     <button
       class="flex1"
@@ -53,7 +53,7 @@
 <script>
 import { mapMutations } from 'vuex';
 export default {
-  props: ['consumable'],
+  props: ['consumable', 'index'],
   computed: {
     totalConsumableItemPrice() {
       return this.consumable.price * this.consumable.qty * this.consumable.margin;
@@ -108,7 +108,11 @@ export default {
       this.UPDATE_CONSUMABLE_ITEM_TOTAL(lineItem);
     },
     deleteLineItem() {
-      this.DELETE_LINE_ITEM('consumableItems', this.index);
+      const index = this.index;
+      this.DELETE_LINE_ITEM({
+        lineItemType: 'consumableItems',
+        index,
+      });
       // this.UPDATE_UNIT_TOTAL_VALUES();
     },
   },

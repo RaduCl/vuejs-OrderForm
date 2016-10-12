@@ -32,11 +32,9 @@ export default {
         .reduce((acc, x) => acc + x.executionTime * x.qty, 0);
     },
     consumableItems() {
-      console.log('consumableItems ', this.$store.state.quote.unit.consumableItems);
       return this.$store.state.quote.unit.consumableItems;
     },
     assemblyItems() {
-      console.log('assemblyItems ', this.$store.state.quote.unit.assemblyItems);
       return this.$store.state.quote.unit.assemblyItems;
     },
   },
@@ -93,7 +91,7 @@ export default {
   > *
     margin: 10px;
 
-  button
-    color: red;
+button
+  color: red;
 
 </style>

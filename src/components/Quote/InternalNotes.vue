@@ -1,6 +1,6 @@
 <template>
   <div class="quote-description">
-    <p>Internal Notes</p>
+    <label>Internal Notes</label><br>
     <textarea type="text" id="quote-internal-notes" rows="6" 
       placeholder="Enter internal notes here..."
       @blur="updateInternalNotes"
@@ -32,6 +32,4 @@ export default {
 </script>
 
 <style lang="sass">
-.quote-internal-notes
-  padding-top: 50px;
 </style>

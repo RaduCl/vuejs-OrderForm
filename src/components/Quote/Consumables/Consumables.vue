@@ -21,7 +21,7 @@
     <div class="unit-controls">
       <button type="button" class="btn btn-default"
         @click="addLineItem"
-      >+ Add line item</button>
+      >+ Add consumable item</button>
     </div>
 
     <div class="unit-summary">
@@ -62,7 +62,7 @@ export default {
         margin: 0,
       };
       this.ADD_LINE_ITEM({
-        lineItemType: 'consumablesItems',
+        lineItemType: 'consumableItems',
         newLineItem: lineItem,
       });
     },
