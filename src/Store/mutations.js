@@ -155,7 +155,7 @@ export const mutations = {
   UPDATE_ASSEMBLY_ITEM_TOTAL(state, lineItem) {
     const timeRelatedCost =
       lineItem.time *
-      (state.quote.config.workerHourlyCost / 3600).toFixed(2);
+      (state.quote.config.workerRates / 3600).toFixed(2);
     lineItem.totalPrice = (timeRelatedCost * lineItem.qty * lineItem.margin).toFixed(2);
   },
 

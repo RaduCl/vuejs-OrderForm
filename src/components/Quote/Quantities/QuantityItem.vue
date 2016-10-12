@@ -37,7 +37,7 @@ export default {
       const price = this.quantity.units * this.$store.state.quote.unit.assemblyItems
         .reduce((acc, x) => {
           const timeRelatedCost =
-            x.time * (this.$store.state.quote.config.workerHourlyCost / 3600).toFixed(2);
+            x.time * (this.$store.state.quote.config.workerRates / 3600).toFixed(2);
           const totalPrice = (timeRelatedCost * x.qty * x.margin).toFixed(2);
           return acc + parseFloat(totalPrice);
         }, 0);

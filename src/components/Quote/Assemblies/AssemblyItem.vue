@@ -58,7 +58,7 @@ export default {
     totalAssemblyItemPrice() {
       const timeRelatedCost =
         this.assembly.time *
-        (this.$store.state.quote.config.workerHourlyCost / 3600).toFixed(2);
+        (this.$store.state.quote.config.workerRates / 3600).toFixed(2);
       return (timeRelatedCost * this.assembly.qty * this.assembly.margin).toFixed(2);
     },
   },
